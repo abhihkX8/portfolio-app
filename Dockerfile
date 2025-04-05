@@ -1,18 +1,13 @@
-FROM node:18-alpine
 
-# Set the working directory
+
+FROM node:18-slim
+
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm install
-
-# Copy the entire project and build the application
 COPY . .
-RUN npm run build
 
-# Expose the application port
+RUN npm install && npm run build	
+
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "start"]
+CMD ["npm","run","dev"] 
